@@ -36,20 +36,24 @@ def predict():
     for i in x:
         input_data[i] = NullClearner(input_data[i])
     # Replace newline characters with an empty string
+    
     input_data['DEPARTURE'] = input_data['DEPARTURE'].str.replace('\n', '')
     input_data['DEPARTURE'] = input_data['DEPARTURE'].str.replace(' ', '')
     input_data['DEPARTURE'] = input_data['DEPARTURE'].str.split(',').str.get(0)
-    input_data['DEPARTURE'] = input_data['DEPARTURE'].str.replace('[^a-zA-Z\s]', '', regex=True).str.strip() # Remove non-alphabetic characters and trim spaces in the 'Column_Name'
+    input_data['DEPARTURE'] = input_data['DEPARTURE'].str.split('-').str[0]
+    input_data['DEPARTURE'] = input_data['DEPARTURE'].str.replace('[^a-zA-Z\s]', '', regex=True).str.strip() # Remove non-alphabetic characters and trim spaces in the 'Column_Name'    
     input_data['DEPARTURE'] = input_data['DEPARTURE'].str.upper()
 
     input_data['DESTINATION'] = input_data['DESTINATION'].str.replace('\n', '')
     input_data['DESTINATION'] = input_data['DESTINATION'].str.replace(' ', '')
     input_data['DESTINATION'] = input_data['DESTINATION'].str.split(',').str.get(0)
+    input_data['DESTINATION'] = input_data['DESTINATION'].str.split('-').str[0]
     input_data['DESTINATION'] = input_data['DESTINATION'].str.replace('[^a-zA-Z\s]', '', regex=True).str.strip() # Remove non-alphabetic characters and trim spaces in the 'Column_Name'
     input_data['DESTINATION'] = input_data['DESTINATION'].str.upper()
     
     input_data['DEPARTURE'] = input_data['DEPARTURE'].map(encode_dict)
     input_data['DESTINATION'] = input_data['DESTINATION'].map(encode_dict)
+    
     input_data = scaling_dict.transform(input_data)
 
     prediction = model.predict(input_data)

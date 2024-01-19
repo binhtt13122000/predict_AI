@@ -1,7 +1,7 @@
 {
-    "DEPARTURE": "Long Beach - US", 
-    "DESTINATION": "CAI MEP - VIETNAM",
-    "DEPARTURE_YEAR": [2024],
-    "DEPARTURE_MONTH": [1],
-    "DEPARTURE_DAY": [19]
+	"DEPARTURE": "Long Beach - US",
+	"DESTINATION": "Danang",
+	"DEPARTURE_YEAR": [2024],
+	"DEPARTURE_MONTH": [1],
+	"DEPARTURE_DAY": [19]
 }
