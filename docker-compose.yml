@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    image: binhtt13122000/eta_project
+    environment:
+      - PREDICT_URL
+      - DATABASE_USERNAME
+      - DATABASE_PASSWORD 
+      - DATABASE_PORT
+      - DATABASE_HOST
+      - DATABASE_NAME=predict_routes
+      - DATABASE_URI
+      - JWT_ACCESS_TOKEN_EXPIRATION_TIME # = 30 phút
+      - JWT_REFRESH_TOKEN_EXPIRATION_TIME # = 1 tuần 
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    depends_on:
+      - ai
+
+  ai:
+    container_name: ai
+    image: binhtt13122000/predict-ai
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
