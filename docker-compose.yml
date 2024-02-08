@@ -15,9 +15,9 @@ services:
       - JWT_ACCESS_TOKEN_EXPIRATION_TIME # = 30 phút
       - JWT_REFRESH_TOKEN_EXPIRATION_TIME # = 1 tuần 
     ports:
-      - "3005:3000"
+      - "80:3000"
     expose:
-      - "3005"
+      - "80"
     depends_on:
       - ai
 
