@@ -15,9 +15,9 @@ services:
       - JWT_ACCESS_TOKEN_EXPIRATION_TIME # = 30 phút
       - JWT_REFRESH_TOKEN_EXPIRATION_TIME # = 1 tuần 
     ports:
-      - "3000:3000"
+      - "3005:3000"
     expose:
-      - "3000"
+      - "3005"
     depends_on:
       - ai
 
@@ -28,3 +28,15 @@ services:
       - "5000:5000"
     expose:
       - "5000"
+  fe:
+    container_name: fe
+    image: danhskipper18/predict-fe
+    environment:
+        - NEXT_PUBLIC_BE_API_URL
+        - NEXTAUTH_SECRET
+    ports:
+        - "3000:3000"
+    expose:
+        - "3000"
+    depends_on:
+        - backend
